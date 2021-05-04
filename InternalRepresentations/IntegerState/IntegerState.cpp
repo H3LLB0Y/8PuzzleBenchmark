@@ -21,7 +21,11 @@ IntegerState stringToIR<IntegerState>(const std::string &state) {
 template<>
 std::string stringFromIR<IntegerState>(IntegerState state) {
     // TODO: Can probably optimize this some if it's base 10 always
-    return std::to_string(state);
+    std::string asString = std::to_string(state);
+    if (asString.length() == 8) {
+        asString = "0" + asString;
+    }
+    return asString;
 }
 
 template<>
