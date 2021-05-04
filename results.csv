@@ -1,0 +1,75 @@
+0,0,StringState,DepthFirstSearch,042158367,117,158,161,Success!,Time taken = 1.17684 milliseconds.
+0,1,StringState,BreadthFirstSearch,042158367,113,8,150,Success!,Time taken = 0.857691 milliseconds.
+0,2,StringState,ProgressiveDeepeningSearch,042158367,8,8,598,Success!,Time taken = 1.76528 milliseconds.
+0,3,StringState,AStarSearch,042158367,15,8,16,Success!,Time taken = 0.109706 milliseconds.
+
+0,0,IntegerState,DepthFirstSearch,042158367,117,158,161,Success!,Time taken = 0.688796 milliseconds.
+0,1,IntegerState,BreadthFirstSearch,042158367,113,8,150,Success!,Time taken = 0.468116 milliseconds.
+0,2,IntegerState,ProgressiveDeepeningSearch,042158367,8,8,598,Success!,Time taken = 1.04752 milliseconds.
+0,3,IntegerState,AStarSearch,042158367,15,8,16,Success!,Time taken = 0.079801 milliseconds.
+
+0,0,NibbleState,DepthFirstSearch,042158367,117,158,161,Success!,Time taken = 0.638291 milliseconds.
+0,1,NibbleState,BreadthFirstSearch,042158367,113,8,150,Success!,Time taken = 0.438731 milliseconds.
+0,2,NibbleState,ProgressiveDeepeningSearch,042158367,8,8,598,Success!,Time taken = 0.977159 milliseconds.
+0,3,NibbleState,AStarSearch,042158367,15,8,16,Success!,Time taken = 0.090291 milliseconds.
+
+1,0,StringState,DepthFirstSearch,876543210,411,498,55867,Success!,Time taken = 253.982 milliseconds.
+1,1,StringState,BreadthFirstSearch,876543210,24058,28,172960,Success!,Time taken = 1093.23 milliseconds.
+1,2,StringState,ProgressiveDeepeningSearch,876543210,35,38,871337,Success!,Time taken = 3796.82 milliseconds.
+1,3,StringState,AStarSearch,876543210,932,28,1554,Success!,Time taken = 11.716 milliseconds.
+
+1,0,IntegerState,DepthFirstSearch,876543210,411,498,55867,Success!,Time taken = 157.307 milliseconds.
+1,1,IntegerState,BreadthFirstSearch,876543210,24058,28,172960,Success!,Time taken = 677.547 milliseconds.
+1,2,IntegerState,ProgressiveDeepeningSearch,876543210,35,38,871337,Success!,Time taken = 2376.66 milliseconds.
+1,3,IntegerState,AStarSearch,876543210,932,28,1554,Success!,Time taken = 8.43547 milliseconds.
+
+1,0,NibbleState,DepthFirstSearch,876543210,411,498,55867,Success!,Time taken = 151.527 milliseconds.
+1,1,NibbleState,BreadthFirstSearch,876543210,24058,28,172960,Success!,Time taken = 651.682 milliseconds.
+1,2,NibbleState,ProgressiveDeepeningSearch,876543210,35,38,871337,Success!,Time taken = 2282.76 milliseconds.
+1,3,NibbleState,AStarSearch,876543210,932,28,1554,Success!,Time taken = 9.68508 milliseconds.
+
+2,0,StringState,DepthFirstSearch,481302675,411,496,68659,Success!,Time taken = 307.075 milliseconds.
+2,1,StringState,BreadthFirstSearch,481302675,1536,14,2673,Success!,Time taken = 13.4345 milliseconds.
+2,2,StringState,ProgressiveDeepeningSearch,481302675,16,14,11607,Success!,Time taken = 36.5538 milliseconds.
+2,3,StringState,AStarSearch,481302675,123,14,190,Success!,Time taken = 1.24971 milliseconds.
+
+2,0,IntegerState,DepthFirstSearch,481302675,411,496,68659,Success!,Time taken = 195.892 milliseconds.
+2,1,IntegerState,BreadthFirstSearch,481302675,1536,14,2673,Success!,Time taken = 7.81068 milliseconds.
+2,2,IntegerState,ProgressiveDeepeningSearch,481302675,16,14,11607,Success!,Time taken = 21.7136 milliseconds.
+2,3,IntegerState,AStarSearch,481302675,123,14,190,Success!,Time taken = 0.937275 milliseconds.
+
+2,0,NibbleState,DepthFirstSearch,481302675,411,496,68659,Success!,Time taken = 188.237 milliseconds.
+2,1,NibbleState,BreadthFirstSearch,481302675,1536,14,2673,Success!,Time taken = 7.342 milliseconds.
+2,2,NibbleState,ProgressiveDeepeningSearch,481302675,16,14,11607,Success!,Time taken = 20.3078 milliseconds.
+2,3,NibbleState,AStarSearch,481302675,123,14,190,Success!,Time taken = 1.24972 milliseconds.
+
+3,0,StringState,DepthFirstSearch,168342750,411,500,21149,Success!,Time taken = 90.7202 milliseconds.
+3,1,StringState,BreadthFirstSearch,168342750,17272,22,55032,Success!,Time taken = 339.608 milliseconds.
+3,2,StringState,ProgressiveDeepeningSearch,168342750,20,22,43850,Success!,Time taken = 161.369 milliseconds.
+3,3,StringState,AStarSearch,168342750,871,22,1408,Success!,Time taken = 10.6223 milliseconds.
+
+3,0,IntegerState,DepthFirstSearch,168342750,411,500,21149,Success!,Time taken = 57.9087 milliseconds.
+3,1,IntegerState,BreadthFirstSearch,168342750,17272,22,55032,Success!,Time taken = 214.325 milliseconds.
+3,2,IntegerState,ProgressiveDeepeningSearch,168342750,20,22,43850,Success!,Time taken = 100.133 milliseconds.
+3,3,IntegerState,AStarSearch,168342750,871,22,1408,Success!,Time taken = 7.49824 milliseconds.
+
+3,0,NibbleState,DepthFirstSearch,168342750,411,500,21149,Success!,Time taken = 55.6121 milliseconds.
+3,1,NibbleState,BreadthFirstSearch,168342750,17272,22,55032,Success!,Time taken = 204.437 milliseconds.
+3,2,NibbleState,ProgressiveDeepeningSearch,168342750,20,22,43850,Success!,Time taken = 96.8519 milliseconds.
+3,3,NibbleState,AStarSearch,168342750,871,22,1408,Success!,Time taken = 9.06038 milliseconds.
+
+4,0,StringState,DepthFirstSearch,123804765,411,0,158326,Failed...,Time taken = 8.12313 milliseconds.
+4,1,StringState,BreadthFirstSearch,123804765,24979,0,181440,Failed...,Time taken = 11.5598 milliseconds.
+4,2,StringState,ProgressiveDeepeningSearch,123804765,411,0,71135833,Failed...,Time taken = 3612.96 milliseconds.
+4,3,StringState,AStarSearch,123804765,28858,0,241921,Failed...,Time taken = 18.2768 milliseconds.
+
+4,0,IntegerState,DepthFirstSearch,123804765,411,0,158326,Failed...,Time taken = 5.62367 milliseconds.
+4,1,IntegerState,BreadthFirstSearch,123804765,24979,0,181440,Failed...,Time taken = 7.0296 milliseconds.
+4,2,IntegerState,ProgressiveDeepeningSearch,123804765,411,0,71135833,Failed...,Time taken = 2269.29 milliseconds.
+4,3,IntegerState,AStarSearch,123804765,28858,0,241921,Failed...,Time taken = 12.8095 milliseconds.
+
+4,0,NibbleState,DepthFirstSearch,123804765,411,0,158326,Failed...,Time taken = 5.31126 milliseconds.
+4,1,NibbleState,BreadthFirstSearch,123804765,24979,0,181440,Failed...,Time taken = 6.87348 milliseconds.
+4,2,NibbleState,ProgressiveDeepeningSearch,123804765,411,0,71135833,Failed...,Time taken = 2178.54 milliseconds.
+4,3,NibbleState,AStarSearch,123804765,28858,0,241921,Failed...,Time taken = 14.0594 milliseconds.
+
