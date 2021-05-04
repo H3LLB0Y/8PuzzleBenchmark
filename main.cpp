@@ -52,9 +52,12 @@ int main(int argc, char **argv) {
 
                 std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 
-                const int NUM_RUNS = 5;
+                const int NUM_RUNS = 1000000;
+                const int MAX_RUN_SECONDS = 30;
+                int actualRuns;
                 bool success = true;
-                for (int i = 0; i < NUM_RUNS; ++i) {
+                bool timeout = false;
+                for (actualRuns = 0; actualRuns < NUM_RUNS; ++actualRuns) {
                     searchResults = SA().runSearch(
                             initialState,
                             goalState,
@@ -64,10 +67,17 @@ int main(int argc, char **argv) {
                         success = false;
                         break;
                     }
+                    std::chrono::steady_clock::time_point timeCheck = std::chrono::steady_clock::now();
+                    std::chrono::duration<float> runningTime = timeCheck - start;
+                    if (runningTime > std::chrono::seconds(MAX_RUN_SECONDS)) {
+                        timeout = true;
+                        break;
+                    }
                 }
 
                 std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-                std::chrono::duration<float, std::milli> duration = end - start;
+                std::chrono::duration<float> durationSeconds = end - start;
+                std::chrono::duration<float, std::milli> durationMillis = end - start;
                 std::cout << initialStateIndex << "," << index << ",";
                 std::cout << internalRepresentationName<IR>() << ",";
                 std::cout << searchAlgorithmTypeName<SA>() << ",";
@@ -75,9 +85,10 @@ int main(int argc, char **argv) {
                 std::cout << searchResults.maxQueueLength << ",";
                 std::cout << searchResults.path.length() << ",";
                 std::cout << searchResults.numberOfStateExpansions << ",";
-                std::cout << (success ? "Success!" : "Failed...") << ",";
+                std::cout << (success ? (timeout ? "Timeout?" : "Success!") : "Failed...") << ",";
                 //std::cout << searchResults.path << ",";
-                std::cout << "Time taken = " << duration.count() / (success ? NUM_RUNS : 1) << " milliseconds."
+                std::cout << actualRuns << " runs in " << durationSeconds.count() << " secs" << ",";
+                std::cout << "Time taken = " << durationMillis.count() / (success ? actualRuns : 1) << " milliseconds."
                           << std::endl;
             });
             std::cout << std::endl;
