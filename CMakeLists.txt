@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.2)
 project(8Puzzle)
 
-set(CMAKE_CXX_STANDARD 20)
-
 set(
         SOURCE_FILES
+        8Puzzle.cpp
         InternalRepresentations/InternalRepresentation.h
         InternalRepresentations/IntegerState/IntegerState.cpp
         InternalRepresentations/IntegerState/IntegerState.h
@@ -12,8 +11,6 @@ set(
         InternalRepresentations/NibbleState/NibbleState.h
         InternalRepresentations/StringState/StringState.cpp
         InternalRepresentations/StringState/StringState.h
-        SearchAlgorithms/SearchAlgorithm.cpp
-        SearchAlgorithms/SearchAlgorithm.h
         SearchAlgorithms/AStarSearch/AStarSearch.cpp
         SearchAlgorithms/AStarSearch/AStarSearch.h
         SearchAlgorithms/BreadthFirstSearch/BreadthFirstSearch.cpp
@@ -22,12 +19,12 @@ set(
         SearchAlgorithms/DepthFirstSearch/DepthFirstSearch.h
         SearchAlgorithms/DepthFirstSearch/ProgressiveDeepeningSearch/ProgressiveDeepeningSearch.cpp
         SearchAlgorithms/DepthFirstSearch/ProgressiveDeepeningSearch/ProgressiveDeepeningSearch.h
+        SearchAlgorithms/SearchAlgorithm.cpp
+        SearchAlgorithms/SearchAlgorithm.h
         TypedState/TypedState.cpp
         TypedState/TypedState.h
-        main.cpp
-        TypedState/MovementType.h
         TypedState/MovementType.cpp
+        TypedState/MovementType.h
 )
-add_executable(main ${SOURCE_FILES})
-
-target_link_libraries(main)
+add_executable(8Puzzle ${SOURCE_FILES})
+target_compile_features(8Puzzle PRIVATE cxx_std_17)
