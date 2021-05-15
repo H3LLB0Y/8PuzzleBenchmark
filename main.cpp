@@ -60,6 +60,7 @@ int main(int argc, char **argv) {
                 int actualRuns;
                 bool success = true;
                 bool timeout = false;
+                // TODO: Maybe put the stringToIR call out here?
                 for (actualRuns = 0; actualRuns < NUM_RUNS; ++actualRuns) {
                     searchResults = SA().runSearch(
                             initialState,
