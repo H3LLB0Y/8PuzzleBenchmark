@@ -17,7 +17,7 @@ protected:
     int depth;
 public:
     // Copy constructor.
-    TypedState(const TypedState &s);
+    TypedState(const TypedState &s) = default;
 
     // Constructor from initial string and goal string. Assumes no moves. (Empty Path)
     explicit TypedState(std::string initialState);

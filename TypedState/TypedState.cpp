@@ -3,11 +3,6 @@
 #include "../InternalRepresentations/InternalRepresentation.h"
 
 template<typename IR>
-TypedState<IR>::TypedState(const TypedState<IR> &typedState)
-        : state(typedState.state), x0(typedState.x0), y0(typedState.y0), path(typedState.path),
-          depth(typedState.depth) {}
-
-template<typename IR>
 TypedState<IR>::TypedState(const std::string initialState): state(stringToIR<IR>(initialState)) {
     // TODO: Optimize the find '0' (Maybe InternalRepresentation specific?)
     switch (initialState.length()) {
