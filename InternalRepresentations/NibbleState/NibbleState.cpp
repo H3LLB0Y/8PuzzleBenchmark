@@ -54,6 +54,7 @@ NibbleState stringToIR<NibbleState>(const std::string &state) {
         case 9:
             for (int y = 0; y < 3; ++y) {
                 for (int x = 0; x < 3; ++x) {
+                    // TODO: Utility functions! for 2D->1D
                     NibbleState character = characterToNibble(state[y * 3 + x]);
                     nibbleState |= character << ((y * 4 + x) * 4);
                 }

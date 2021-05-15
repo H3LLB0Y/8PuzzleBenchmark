@@ -22,6 +22,7 @@ StringState adjust<StringState>(StringState state, int x, int y, MovementType mo
     int from;
     // TODO: Do for 15Puzzle
     int to = y * 3 + x;
+    // TODO: Also utility function
     switch (movementType) {
         case MovementType::UP:
             from = (y - 1) * 3 + x;

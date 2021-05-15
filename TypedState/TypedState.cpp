@@ -5,6 +5,8 @@
 template<typename IR>
 TypedState<IR>::TypedState(const std::string initialState): state(stringToIR<IR>(initialState)) {
     // TODO: Optimize the find '0' (Maybe InternalRepresentation specific?)
+    // TODO: sqrt on initialState.length to get modulus/division RH
+    // TODO: Also assert on length (or pass IR in instead of string?)
     switch (initialState.length()) {
         case 9:
             for (int i = 0; i < 9; ++i) {
@@ -49,6 +51,7 @@ bool TypedState<IR>::canMoveDirection(MovementType movementType) {
         case MovementType::LEFT:
             return x0 != 0;
         default:
+            // TODO: Move to after switch
             throw std::invalid_argument("Argument must be MovementType");
     }
 }
@@ -64,6 +67,7 @@ char letterForDirection(MovementType movementType) {
         case MovementType::LEFT:
             return 'L';
         default:
+            // TODO: Move to after switch
             throw std::invalid_argument("Argument must be MovementType");
     }
 }

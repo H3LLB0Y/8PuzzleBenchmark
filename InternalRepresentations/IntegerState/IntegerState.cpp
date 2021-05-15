@@ -29,6 +29,7 @@ std::string stringFromIR<IntegerState>(IntegerState state) {
 template<>
 IntegerState adjust<IntegerState>(IntegerState state, int x, int y, MovementType movementType) {
     // TODO: Optimize this, so x/y is a single variable?
+    // TODO: or at least a utility function
     int powInsert = (8 - (y * 3 + x));
     switch (movementType) {
         case MovementType::UP:

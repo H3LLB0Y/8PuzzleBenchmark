@@ -13,6 +13,7 @@ struct SearchResults {
     std::optional<std::string> path;
 };
 
+// TODO: Aggregate Initialization...
 SearchResults makeSearchResults(
         int numberOfStateExpansions,
         int maxQueueLength,

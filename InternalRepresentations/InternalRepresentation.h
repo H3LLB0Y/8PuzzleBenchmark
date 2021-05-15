@@ -7,6 +7,8 @@
 
 #include "../TypedState/MovementType.h"
 
+// TODO: Consider and alternative name for InternalRepresentation
+// TODO: Something shorter would be nice xD
 template<typename IR>
 extern std::string internalRepresentationName();
 
@@ -16,6 +18,7 @@ extern IR stringToIR(const std::string &state);
 template<typename IR>
 extern std::string stringFromIR(IR state);
 
+// TODO: Name this better so it's self-explanatory what it does (or document it!)
 template<typename IR>
 extern IR adjust(IR state, int x, int y, MovementType movementType);
 

@@ -23,6 +23,7 @@ constexpr void enumerate_types(F &&f) {
 //#define OUTPUT_TO_FILE
 #define PRINT_PATH
 
+// TODO: Split up this main function!
 int main(int argc, char **argv) {
 #ifdef OUTPUT_TO_FILE
     std::ofstream out("results.csv");
