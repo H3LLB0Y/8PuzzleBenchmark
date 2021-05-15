@@ -4,12 +4,14 @@
 
 #include <string>
 
-#include "../DepthFirstSearch/DepthFirstSearch.h"
+#include "../DepthFirstSearch.h"
 
 template<typename IR>
 class ProgressiveDeepeningSearch : public DepthFirstSearch<IR> {
 public:
     ProgressiveDeepeningSearch() = default;
+
+    std::string searchAlgorithmTypeName() override;
 
     SearchResults runSearch(
             const std::string &initialState,

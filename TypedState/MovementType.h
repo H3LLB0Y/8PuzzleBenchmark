@@ -8,4 +8,6 @@ enum class MovementType {
     LEFT,
 };
 
+std::ostream &operator<<(std::ostream &stream, MovementType movementType);
+
 #endif //INC_8PUZZLE_MOVEMENTTYPE_H

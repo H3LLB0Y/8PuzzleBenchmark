@@ -3,8 +3,16 @@
 #include "AStarSearch.h"
 
 template<typename IR>
+std::string AStarSearch<IR>::searchAlgorithmTypeName() {
+    return "AStarSearch";
+}
+
+template<typename IR>
 int calculateHeuristicValue(IR state, IR goalState) {
-    // TODO: Maybe optimize this function somewhat (Representation specific?)
+    // TODO: Optimize this function somewhat (InternalRepresentation specific?)
+    // TODO: For Nibble, something like xor the 2 states together
+    // Then iterate looking for non-zero, extract value from one side, look for in other
+    // Calculate manhatten based on that, continue down until all found
     int value = 0;
     std::string tempState = stringFromIR<IR>(state);
     std::string tempGoalState = stringFromIR<IR>(goalState);
@@ -38,7 +46,11 @@ int calculateHeuristicValue(IR state, IR goalState) {
 }
 
 template<typename IR>
-void AStarSearch<IR>::addToQueue(std::multimap<int, TypedState<IR>> &queue, TypedState<IR> state) {
+void AStarSearch<IR>::addToQueue(
+        std::multimap<int, TypedState<IR>> &queue,
+        TypedState<IR> state,
+        std::set<IR> &alreadyChecked
+) {
     int heuristicValue = calculateHeuristicValue(state.getState(), mGoalState);
     // add node to queue (will be placed according to F cost (heuristic and depth)
     auto pair = std::pair<int, TypedState<IR>>(
@@ -46,6 +58,19 @@ void AStarSearch<IR>::addToQueue(std::multimap<int, TypedState<IR>> &queue, Type
             state
     );
     queue.insert(pair);
+}
+
+template<typename IR>
+void
+AStarSearch<IR>::addToQueueIfNotAlreadyChecked(
+        std::multimap<int, TypedState<IR>> &queue,
+        TypedState<IR> typedState,
+        std::set<IR> &alreadyChecked
+) {
+    auto state = typedState.getState();
+    if (alreadyChecked.find(state) == alreadyChecked.end()) {
+        addToQueue(queue, typedState, alreadyChecked);
+    }
 }
 
 template<typename IR>
@@ -77,94 +102,57 @@ TypedState<IR> AStarSearch<IR>::getNext(std::multimap<int, TypedState<IR>> &queu
 }
 
 template<typename IR>
+std::optional<std::string>
+AStarSearch<IR>::processCurrentState(
+        std::multimap<int, TypedState<IR>> &queue,
+        TypedState<IR> currentState,
+        IR internalGoalState,
+        std::set<IR> &alreadyChecked
+) {
+    // Check if currentState is goalState
+    if (currentState == internalGoalState) {
+        return currentState.getPath();
+    }
+    auto state = currentState.getState();
+    if (alreadyChecked.find(state) == alreadyChecked.end()) {
+        // TODO: Insert and check pair::second instead of checking find==end?
+        // https://stackoverflow.com/questions/97050/stdmap-insert-or-stdmap-find
+        alreadyChecked.insert(state);
+    } else {
+        return std::nullopt;
+    }
+
+    for (auto direction : getSearchDirectionOrder()) {
+        // TODO: Don't do left if last was right, etc
+        if (currentState.canMoveDirection(direction)) {
+            auto moved = currentState.moveDirection(direction);
+            addToQueueIfNotAlreadyChecked(
+                    queue,
+                    moved,
+                    alreadyChecked
+            );
+        }
+    }
+
+    return std::nullopt;
+}
+
+template<typename IR>
 SearchResults AStarSearch<IR>::runSearch(
         const std::string &initialState,
         const std::string &goalState,
         int maxDepth
 ) {
-    int numberOfStateExpansions = 0;
-    int maxQueueLength = 0;
-
-    IR internalGoalState = stringToIR<IR>(goalState);
-    mGoalState = internalGoalState;
-    TypedState<IR> currentState = TypedState<IR>(initialState);
-
-    auto queue = std::multimap<int, TypedState<IR>>();
-    addToQueue(queue, currentState);
-
-    auto expanded = std::set<IR>();
-
-    while (!queueEmpty(queue)) {
-        int queueSize = getQueueSize(queue);
-        if (queueSize > maxQueueLength) {
-            maxQueueLength = queueSize;
-        }
-
-        currentState = getNext(queue);
-
-        ++numberOfStateExpansions;
-
-        if (currentState == internalGoalState) {
-            return makeSearchResults(
-                    numberOfStateExpansions,
-                    maxQueueLength,
-                    currentState.getPath()
-            );
-        }
-
-        auto state = currentState.getState();
-        if (expanded.find(state) == expanded.end()) {
-            expanded.insert(state);
-        } else {
-            continue;
-        }
-
-        if (currentState.getDepth() >= maxDepth) {
-            continue;
-        }
-
-        for (auto direction : getSearchDirectionOrder()) {
-            // TODO: Don't do left if last was right, etc
-            if (currentState.canMoveDirection(direction)) {
-                auto moved = currentState.moveDirection(direction);
-
-                // if not in the expanded list
-                IR movedState = moved.getState();
-                if (expanded.find(movedState) == expanded.end()) {
-                    addToQueue(queue, moved);
-                }
-            }
-        }
-    }
-
-    // Q is empty return empty path, No solution found! :'(
-    return makeSearchResults(
-            numberOfStateExpansions,
-            maxQueueLength,
-            ""
+    mGoalState = stringToIR<IR>(goalState);
+    return SearchAlgorithm<IR, std::multimap<int, TypedState<IR>>>::runSearch(
+            initialState,
+            goalState,
+            maxDepth
     );
 }
 
-template
-class AStarSearch<StringState>;
+template class AStarSearch<StringState>;
 
-template
-class AStarSearch<IntegerState>;
+template class AStarSearch<IntegerState>;
 
-template
-class AStarSearch<NibbleState>;
-
-template<>
-std::string searchAlgorithmTypeName<AStarSearch<StringState>>() {
-    return "AStarSearch";
-}
-
-template<>
-std::string searchAlgorithmTypeName<AStarSearch<IntegerState>>() {
-    return "AStarSearch";
-}
-
-template<>
-std::string searchAlgorithmTypeName<AStarSearch<NibbleState>>() {
-    return "AStarSearch";
-}
+template class AStarSearch<NibbleState>;

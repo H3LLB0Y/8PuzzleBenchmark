@@ -1,9 +1,16 @@
-#include <list>
 #include "DepthFirstSearch.h"
 
+#include <list>
+
 template<typename IR>
-void DepthFirstSearch<IR>::addToQueue(std::stack<TypedState<IR>> &queue, TypedState<IR> state) {
+std::string DepthFirstSearch<IR>::searchAlgorithmTypeName() {
+    return "DepthFirstSearch";
+}
+
+template<typename IR>
+void DepthFirstSearch<IR>::addToQueue(std::stack<TypedState<IR>> &queue, TypedState<IR> state, std::set<IR> &alreadyChecked) {
     queue.push(state);
+    alreadyChecked.insert(state.getState());
 }
 
 template<typename IR>
@@ -33,26 +40,8 @@ std::list<MovementType> DepthFirstSearch<IR>::getSearchDirectionOrder() {
     };
 }
 
-template
-class DepthFirstSearch<StringState>;
+template class DepthFirstSearch<StringState>;
 
-template
-class DepthFirstSearch<IntegerState>;
+template class DepthFirstSearch<IntegerState>;
 
-template
-class DepthFirstSearch<NibbleState>;
-
-template<>
-std::string searchAlgorithmTypeName<DepthFirstSearch<StringState>>() {
-    return "DepthFirstSearch";
-}
-
-template<>
-std::string searchAlgorithmTypeName<DepthFirstSearch<IntegerState>>() {
-    return "DepthFirstSearch";
-}
-
-template<>
-std::string searchAlgorithmTypeName<DepthFirstSearch<NibbleState>>() {
-    return "DepthFirstSearch";
-}
+template class DepthFirstSearch<NibbleState>;

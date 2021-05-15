@@ -1,5 +1,10 @@
 #include "NibbleState.h"
 
+#include "../InternalRepresentation.h"
+
+#include <stdexcept>
+#include <string>
+
 unsigned char characterToNibble(char character) {
     switch (character) {
         case '0':
@@ -19,7 +24,6 @@ unsigned char characterToNibble(char character) {
         case 'D':
         case 'E':
         case 'F':
-            // TODO: Optimize these - character parts
             return character - 'A' + 0xA;
         default:
             throw std::invalid_argument("Character must be a HEX character!");
@@ -30,7 +34,6 @@ char nibbleToCharacter(unsigned char nibble) {
     if (nibble < 0xA) {
         return '0' + nibble;
     } else {
-        // TODO: Optimize these - character parts
         return 'A' - 0xA + nibble;
     }
 }

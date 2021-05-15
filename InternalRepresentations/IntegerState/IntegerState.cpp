@@ -4,8 +4,6 @@
 #include <stdexcept>
 #include <string>
 
-#include "../InternalRepresentation.h"
-
 template<>
 std::string internalRepresentationName<IntegerState>() {
     return "IntegerState";
@@ -30,7 +28,7 @@ std::string stringFromIR<IntegerState>(IntegerState state) {
 
 template<>
 IntegerState adjust<IntegerState>(IntegerState state, int x, int y, MovementType movementType) {
-    // TODO: Optimize this, so x/y is a single variable
+    // TODO: Optimize this, so x/y is a single variable?
     int powInsert = (8 - (y * 3 + x));
     switch (movementType) {
         case MovementType::UP:

@@ -1,5 +1,7 @@
 #include "StringState.h"
 
+#include "../InternalRepresentation.h"
+
 template<>
 std::string internalRepresentationName<StringState>() {
     return "StringState";
@@ -18,6 +20,7 @@ std::string stringFromIR<StringState>(StringState state) {
 template<>
 StringState adjust<StringState>(StringState state, int x, int y, MovementType movementType) {
     int from;
+    // TODO: Do for 15Puzzle
     int to = y * 3 + x;
     switch (movementType) {
         case MovementType::UP:

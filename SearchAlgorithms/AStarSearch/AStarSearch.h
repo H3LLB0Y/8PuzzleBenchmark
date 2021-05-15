@@ -12,7 +12,19 @@ private:
 public:
     AStarSearch() = default;
 
-    void addToQueue(std::multimap<int, TypedState<IR>> &queue, TypedState<IR> state) override;
+    std::string searchAlgorithmTypeName() override;
+
+    void addToQueue(
+            std::multimap<int, TypedState<IR>> &queue,
+            TypedState<IR> state,
+            std::set<IR> &alreadyChecked
+    ) override;
+
+    void addToQueueIfNotAlreadyChecked(
+            std::multimap<int, TypedState<IR>> &queue,
+            TypedState<IR> typedState,
+            std::set<IR> &alreadyChecked
+    ) override;
 
     bool queueEmpty(std::multimap<int, TypedState<IR>> &queue) override;
 
@@ -26,6 +38,14 @@ public:
             const std::string &initialState,
             const std::string &goalState,
             int maxDepth
+    ) override;
+
+    std::optional<std::string>
+    processCurrentState(
+            std::multimap<int, TypedState<IR>> &queue,
+            TypedState<IR> currentState,
+            IR internalGoalState,
+            std::set<IR> &alreadyChecked
     ) override;
 };
 

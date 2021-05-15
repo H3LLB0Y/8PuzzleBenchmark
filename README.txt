@@ -1,6 +1,17 @@
 8 Puzzle Benchmarking Program
 
+4 Search Algorithms:
+// TODO:
+// Class hierarchy
+
+Typed State class:
+// TODO:
+
 3 Internal Representations (Types that the TypedState class uses for representing the board state):
+- StringState:
+Baseline representation. State is represented by a c++ string.
+Adjustment is done by extracting character from place and replacing with '0' and moving character to old '0' place.
+Comparison between states is done via string comparison, so could potentially involve 1-8 comparisons (depending on how exact they are). This was the catalyst behind developing the IntegerState equivalent back in university.
 - IntegerState:
 State is represented by a single 32-bit integer.
 Conversion between string representation and IntegerState is done using "stoi" and "to_string" functions.
@@ -12,60 +23,7 @@ Conversion from string representation to NibbleState is done by shifting the val
 Conversion to string representation from NibbleState is done by extracting the value in order (and adjusting back to ASCII) and appending to a string (pre-reserved).
 As with IntegerState, representing the "state" as a single value means we can more efficiently compare the state values.
 Performance comparisons between NibbleState and IntegerState don't show a huge improvement (like either compared with StringState) but it is perfect size for extending 8-Puzzle to 15-Puzzle so can be extended to that.
-- StringState:
-Baseline representation. State is represented by a c++ string.
-Adjustment is done by extracting character from place and replacing with '0' and moving character to old '0' place.
-Comparison between states is done via string comparison, so could potentially involve 1-8 comparisons (depending on how exact they are). This was the catalyst behind developing the IntegerState equivalent back in university.
 
-
-Files
-- InternalRepresentation/
-	- IntegerState/
-		- IntegerState.cpp
-		- IntegerState.h
-	- NibbleState/
-		- NibbleState.cpp
-		- NibbleState.h
-	- StringState/
-		- StringState.cpp
-		- StringState.h
-- SearchAlgorithms/
-	- AStarSearch/
-		- AStarSearch.cpp
-		- AStarSearch.h
-	- BreadthFirstSearch/
-		- BreadthFirstSearch.cpp
-		- BreadthFirstSearch.h
-	- DepthFirstSearch/
-		- DepthFirstSearch.cpp
-		- DepthFirstSearch.h
-	- ProgressiveDeepeningSearch/
-		- ProgressiveDeepeningSearch.cpp
-		- ProgressiveDeepeningSearch.h
-- TypedState/
-	- TypedState.cpp
-	- TypedState.h
-- CMakeLists.txt - CMake file to build solution
-- main.cpp - Entry point for solution. Runs NUM_RUNS tests on 5 initial states [for each state (3 different internal representations (IR) [for each IR (4 different algorithms)]]
-- results.csv - Latest test run results with NUM_RUNS at 100.
-
-
-The A Star implementation is not quite as explained in the lectures.
-It does retrieve the shortest FCost node, but does not remove longer paths to states already in Q.
-The time reduction is much greater than the duplicate states cut from the Q.
-
-My State implementation uses integers rather than strings, which gives much faster times than string.
-Comparisons between 2 integers will be much faster than string-string comparisons.
-The integer is the 9 values of the squares as they would be in the string. So square 0 is far left in int (e.g 500000000), and square 8 is 0-8 value of the square (e.g 5).
-
-By using integer manipulation it is easy to move numbers around inside the int, and probably faster than string character movement.
-
-y0 and x0 are the position of the 0 in the 8 square.
-
-int num=(int)(retval->state/(pow(10.0,(8-((y0-1)*3+x0)))))%10;	// retrieve number from position
-retval->state-=num*pow(10.0,(8-((y0-1)*3+x0)));						// move number to 0 position
-retval->state+=num*pow(10.0,(8-(y0*3+x0)));							// move 0
-_______________________________________________________________________________
 
 State Class (A more simplified version of the Puzzle Class)
 

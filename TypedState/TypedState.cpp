@@ -9,9 +9,7 @@ TypedState<IR>::TypedState(const TypedState<IR> &typedState)
 
 template<typename IR>
 TypedState<IR>::TypedState(const std::string initialState): state(stringToIR<IR>(initialState)) {
-#ifdef ZERO_FROM_NIBBLE
-    // TODO: Optimize the find '0'
-    //  maybe have x0 & y0 in a single variable
+    // TODO: Optimize the find '0' (Maybe InternalRepresentation specific?)
     switch (initialState.length()) {
         case 9:
             for (int i = 0; i < 9; ++i) {
@@ -32,28 +30,6 @@ TypedState<IR>::TypedState(const std::string initialState): state(stringToIR<IR>
             }
             break;
     }
-#else
-    switch (initialState.length()) {
-        case 9:
-            for (int i = 0; i < 9; ++i) {
-                if (initialState[i] == '0') {
-                    x0 = i % 3;
-                    y0 = i / 3;
-                    break;
-                }
-            }
-            break;
-        case 16:
-            for (int i = 0; i < 16; ++i) {
-                if (initialState[i] == '0') {
-                    x0 = i % 4;
-                    y0 = i / 4;
-                    break;
-                }
-            }
-            break;
-    }
-#endif
     path = "";
     depth = 0;
 }
@@ -142,11 +118,8 @@ int TypedState<IR>::get0Pos() const {
     return y0 * 3 + x0;
 }
 
-template
-class TypedState<StringState>;
+template class TypedState<StringState>;
 
-template
-class TypedState<IntegerState>;
+template class TypedState<IntegerState>;
 
-template
-class TypedState<NibbleState>;
+template class TypedState<NibbleState>;

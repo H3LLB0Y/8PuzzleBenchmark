@@ -20,12 +20,14 @@ set(
         SearchAlgorithms/BreadthFirstSearch/BreadthFirstSearch.h
         SearchAlgorithms/DepthFirstSearch/DepthFirstSearch.cpp
         SearchAlgorithms/DepthFirstSearch/DepthFirstSearch.h
-        SearchAlgorithms/ProgressiveDeepeningSearch/ProgressiveDeepeningSearch.cpp
-        SearchAlgorithms/ProgressiveDeepeningSearch/ProgressiveDeepeningSearch.h
+        SearchAlgorithms/DepthFirstSearch/ProgressiveDeepeningSearch/ProgressiveDeepeningSearch.cpp
+        SearchAlgorithms/DepthFirstSearch/ProgressiveDeepeningSearch/ProgressiveDeepeningSearch.h
         TypedState/TypedState.cpp
         TypedState/TypedState.h
         main.cpp
-        TypedState/MovementType.h)
+        TypedState/MovementType.h
+        TypedState/MovementType.cpp
+)
 add_executable(main ${SOURCE_FILES})
 
 target_link_libraries(main)

@@ -1,8 +1,18 @@
 #include "BreadthFirstSearch.h"
 
 template<typename IR>
-void BreadthFirstSearch<IR>::addToQueue(std::queue<TypedState<IR>> &queue, TypedState<IR> state) {
+std::string BreadthFirstSearch<IR>::searchAlgorithmTypeName() {
+    return "BreadthFirstSearch";
+}
+
+template<typename IR>
+void BreadthFirstSearch<IR>::addToQueue(
+        std::queue<TypedState<IR>> &queue,
+        TypedState<IR> state,
+        std::set<IR> &alreadyChecked
+) {
     queue.push(state);
+    alreadyChecked.insert(state.getState());
 }
 
 template<typename IR>
@@ -32,26 +42,8 @@ std::list<MovementType> BreadthFirstSearch<IR>::getSearchDirectionOrder() {
     };
 }
 
-template
-class BreadthFirstSearch<StringState>;
+template class BreadthFirstSearch<StringState>;
 
-template
-class BreadthFirstSearch<IntegerState>;
+template class BreadthFirstSearch<IntegerState>;
 
-template
-class BreadthFirstSearch<NibbleState>;
-
-template<>
-std::string searchAlgorithmTypeName<BreadthFirstSearch<StringState>>() {
-    return "BreadthFirstSearch";
-}
-
-template<>
-std::string searchAlgorithmTypeName<BreadthFirstSearch<IntegerState>>() {
-    return "BreadthFirstSearch";
-}
-
-template<>
-std::string searchAlgorithmTypeName<BreadthFirstSearch<NibbleState>>() {
-    return "BreadthFirstSearch";
-}
+template class BreadthFirstSearch<NibbleState>;
